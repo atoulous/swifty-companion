@@ -7,5 +7,5 @@ target 'swifty-companion' do
 
     pod 'Alamofire'
     pod 'SwiftyJSON'
-    pod 'AlamofireImage'
+    
 end

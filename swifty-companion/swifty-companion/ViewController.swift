@@ -8,16 +8,16 @@
 
 import UIKit
 import Alamofire
-import SwiftyJSON
 
 class ViewController: UIViewController {
 
     var resultSearchController : UISearchController?
+    var TableViewControllerDelegate : UITableViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         displaySearchBar()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "alliance_background")!)
     }
     
     func displaySearchBar() {
@@ -34,12 +34,22 @@ class ViewController: UIViewController {
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
+    
+        tableView.mainViewDelegate = self
     }
     
-    func _alert(msg : String) {
-        print("alert", msg)
-        let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default))
-        self.present(alert, animated: true, completion: nil)
+    func handleSegue(userId: String) {
+        performSegue(withIdentifier: "segueViewToSecond", sender: userId)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueViewToSecond" {
+            if let SecondViewController = segue.destination as? SecondViewController {
+                SecondViewController.mainViewDelegate = self
+                SecondViewController.userId = sender as? String
+            }
+        }
+    }
+    
+
 }
