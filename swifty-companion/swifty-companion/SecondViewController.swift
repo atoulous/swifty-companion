@@ -67,7 +67,6 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                     }
                     return
                 }
-                print("user==", json)
                 if let login = json["login"].string {
                     self.labelLogin.text = login
                 }
@@ -106,7 +105,6 @@ class SecondViewController: UIViewController, UIScrollViewDelegate, UITableViewD
                         self.viewPhoto.image = UIImage(named: "default-user-image")
                     }
                 }
-                
                 if let projects = json["projects_users"].array {
                     self.projects = projects
                 }

@@ -41,6 +41,10 @@ class TableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50.0
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = JSON(users[indexPath.row])
         mainViewDelegate?.handleSegue(userId: String(describing: item["id"].int!))
